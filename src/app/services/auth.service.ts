@@ -35,7 +35,7 @@ export class AuthService {
           })
       } else {
 
-        this.authSubscribe.unsubscribe();
+
         this.store.dispatch(authActions.unSetUser())
         this.store.dispatch(ingresoEgresoActions.unSetItems())
 
@@ -56,6 +56,8 @@ export class AuthService {
     return this.auth.signInWithEmailAndPassword(email, password);
   }
   logout() {
+    this.store.dispatch(authActions.unSetUser())
+    this.store.dispatch(ingresoEgresoActions.unSetItems())
     return this.auth.signOut();
   }
 
